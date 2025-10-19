@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Card - Sasha M</title>
     <style>
-        /* CSS Reset */
         * {
             margin: 0;
             padding: 0;
@@ -24,7 +23,6 @@
             align-items: center;
         }
 
-        /* Profile Card Container */
         article[data-testid="test-profile-card"] {
             background: white;
             border-radius: 12px;
@@ -40,7 +38,6 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
-        /* Card Layout */
         .card-content {
             display: flex;
             flex-direction: column;
@@ -52,7 +49,6 @@
             }
         }
 
-        /* Avatar Section */
         .avatar-section {
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             padding: 30px;
@@ -84,13 +80,11 @@
             opacity: 0.9;
         }
 
-        /* Info Section */
         .info-section {
             padding: 30px;
             flex: 1;
         }
 
-        /* Header Section */
         header {
             margin-bottom: 20px;
             padding-bottom: 15px;
@@ -119,7 +113,6 @@
             color: #0366d6;
         }
 
-        /* Social Links */
         nav[data-testid="test-user-social-links"] {
             margin: 20px 0;
         }
@@ -162,7 +155,6 @@
             font-size: 1.2rem;
         }
 
-        /* Hobbies and Dislikes Sections */
         section {
             margin: 20px 0;
         }
@@ -216,7 +208,6 @@
             font-size: 1.2rem;
         }
 
-        /* Mobile Responsive */
         @media (max-width: 767px) {
             .avatar-section {
                 padding: 20px;
@@ -237,7 +228,6 @@
             }
         }
 
-        /* Focus styles for accessibility */
         a:focus, button:focus {
             outline: 2px solid #007bff;
             outline-offset: 2px;
@@ -251,8 +241,8 @@
                 <figure>
                     <img 
                         data-testid="test-user-avatar" 
-                        src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
-                        alt="Profile photo of Jane Smith"
+                      img src="./images/Screenshot from 2025-10-19 11-23-10.png"
+                        alt="Profile photo of Sasha M"
                     >
                     <figcaption>Professional Headshot</figcaption>
                 </figure>
@@ -306,9 +296,9 @@
                     <h3>Hobbies</h3>
                     <ul>
                         <li>Hiking and outdoor photography</li>
-                        <li>Playing classical guitar</li>
+                        <li>Watching Netflix</li>
                         <li>Open source contribution</li>
-                        <li>Board game design</li>
+                        <li>Designing Websites</li>
                     </ul>
                 </section>
                 
@@ -318,7 +308,7 @@
                         <li>Inaccessible web interfaces</li>
                         <li>Slow loading websites</li>
                         <li>Poor documentation</li>
-                        <li>Coffee without caffeine</li>
+                        <li>Code that lacks clarity</li>
                     </ul>
                 </section>
             </div>
@@ -326,24 +316,22 @@
     </article>
 
     <script>
-        // Update the current time in milliseconds
         function updateTime() {
-            const timeElement = document.querySelector('[data-testid="test-user-time"]');
-            if (timeElement) {
-                timeElement.textContent = Date.now();
-            }
-        }
+    const timeElement = document.querySelector('[data-testid="test-user-time"]');
+    const now = new Date();
+    const timeString = now.getHours() + ":" + 
+                      now.getMinutes().toString().padStart(2, '0') + ":" + 
+                      now.getSeconds().toString().padStart(2, '0');
+    timeElement.textContent = timeString;
+}
         
-        // Initialize time and set interval to update it
         updateTime();
         setInterval(updateTime, 100);
         
-        // Handle avatar upload functionality
         document.addEventListener('DOMContentLoaded', function() {
             const avatarElement = document.querySelector('[data-testid="test-user-avatar"]');
             
-            // For demonstration purposes, we'll simulate an upload by allowing
-            // the user to paste an image URL
+            
             avatarElement.addEventListener('click', function() {
                 const newUrl = prompt('Enter a new image URL:');
                 if (newUrl) {
@@ -351,7 +339,6 @@
                 }
             });
             
-            // Add keyboard accessibility for avatar
             avatarElement.setAttribute('tabindex', '0');
             avatarElement.setAttribute('role', 'button');
             avatarElement.setAttribute('aria-label', 'Change profile picture');
