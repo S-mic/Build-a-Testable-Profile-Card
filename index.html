@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Card - Sasha M</title>
+    <title>Sasha M - Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -11,16 +11,120 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --border-radius: 4px;
+            --transition: all 0.3s ease;
+            --shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-color);
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
             min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        h1, h2, h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
         }
 
         article[data-testid="test-profile-card"] {
@@ -31,6 +135,7 @@
             max-width: 800px;
             width: 100%;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 0 auto 2rem;
         }
 
         article[data-testid="test-profile-card"]:hover {
@@ -72,6 +177,7 @@
             object-fit: cover;
             border: 4px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
         }
 
         figcaption {
@@ -83,24 +189,6 @@
         .info-section {
             padding: 30px;
             flex: 1;
-        }
-
-        header {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        h2[data-testid="test-user-name"] {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        p[data-testid="test-user-bio"] {
-            color: #555;
-            margin-bottom: 15px;
-            line-height: 1.6;
         }
 
         .time-display {
@@ -159,23 +247,6 @@
             margin: 20px 0;
         }
 
-        h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-            display: flex;
-            align-items: center;
-        }
-
-        h3::before {
-            content: "";
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
         .hobbies-section h3::before {
             background-color: #28a745;
         }
@@ -208,7 +279,138 @@
             font-size: 1.2rem;
         }
 
-        @media (max-width: 767px) {
+        form {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.5);
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .success-message {
+            background-color: var(--success-color);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .input-error {
+            border-color: var(--error-color);
+        }
+
+        .about-section {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .about-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links li {
+                margin: 0.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            form, .about-section {
+                padding: 1.5rem;
+            }
+            
             .avatar-section {
                 padding: 20px;
                 flex: 0 0 auto;
@@ -228,109 +430,443 @@
             }
         }
 
-        a:focus, button:focus {
-            outline: 2px solid #007bff;
-            outline-offset: 2px;
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            form, .about-section {
+                padding: 1rem;
+            }
+        }
+
+        .page-navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-btn {
+            background-color: white;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .page-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .page-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <article data-testid="test-profile-card" aria-label="User Profile Card">
-        <div class="card-content">
-            <div class="avatar-section">
-                <figure>
-                    <img 
-                        data-testid="test-user-avatar" 
-                      img src="./images/Screenshot from 2025-10-19 11-23-10.png"
-                        alt="Profile photo of Sasha M"
-                    >
-                    <figcaption>Professional Headshot</figcaption>
-                </figure>
-                <div class="time-display">
-                    Current time: <span data-testid="test-user-time"></span> ms
+    <header>
+        <nav>
+            <div class="logo">Sasha M - Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#" data-page="profile">Profile</a></li>
+                <li><a href="#" data-page="about">About Me</a></li>
+                <li><a href="#" data-page="contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="page-navigation">
+            <a href="#" class="page-btn active" data-page="profile">Profile</a>
+            <a href="#" class="page-btn" data-page="about">About Me</a>
+            <a href="#" class="page-btn" data-page="contact">Contact Us</a>
+        </div>
+
+        <section class="page active" id="profile-page">
+            <h1>My Profile</h1>
+            <article data-testid="test-profile-card" aria-label="User Profile Card">
+                <div class="card-content">
+                    <div class="avatar-section">
+                        <figure>
+                            <img 
+                                data-testid="test-user-avatar" 
+                                src="./images/Screenshot from 2025-10-19 11-23-10.png"
+                                alt="Profile photo of Sasha M"
+                            >
+                            <figcaption>Professional Headshot</figcaption>
+                        </figure>
+                        <div class="time-display">
+                            Current time: <span data-testid="test-user-time"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-section">
+                        <header>
+                            <h2 data-testid="test-user-name">Sasha M</h2>
+                            <p data-testid="test-user-bio">Frontend developer with 2+ years of experience building accessible, responsive web applications. Passionate about UX design and creating inclusive digital experiences for all users.</p>
+                        </header>
+                        
+                        <nav data-testid="test-user-social-links" aria-label="Social Media Links">
+                            <ul class="social-links">
+                                <li>
+                                    <a 
+                                        href="https://X.com/sasham" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        data-testid="test-user-social-twitter"
+                                    >
+                                        <span class="social-icon">🐦</span> X
+                                    </a>
+                                </li>
+                                <li>
+                                    <a 
+                                        href="https://github.com/S-mic" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        data-testid="test-user-social-github"
+                                    >
+                                        <span class="social-icon">💻</span> GitHub
+                                    </a>
+                                </li>
+                                <li>
+                                    <a 
+                                        href="https://www.linkedin.com/in/sasha-michell-dube-87b079305" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        data-testid="test-user-social-linkedin"
+                                    >
+                                        <span class="social-icon">💼</span> LinkedIn
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        
+                        <section class="hobbies-section" data-testid="test-user-hobbies">
+                            <h3>Hobbies</h3>
+                            <ul>
+                                <li>Hiking and outdoor photography</li>
+                                <li>Watching Netflix</li>
+                                <li>Open source contribution</li>
+                                <li>Designing Websites</li>
+                            </ul>
+                        </section>
+                        
+                        <section class="dislikes-section" data-testid="test-user-dislikes">
+                            <h3>Dislikes</h3>
+                            <ul>
+                                <li>Inaccessible web interfaces</li>
+                                <li>Slow loading websites</li>
+                                <li>Poor documentation</li>
+                                <li>Code that lacks clarity</li>
+                            </ul>
+                        </section>
+                    </div>
                 </div>
+            </article>
+        </section>
+        <section class="page" id="about-page" data-testid="test-about-page">
+            <h1>About Me</h1>
+            
+            <section class="about-section" data-testid="test-about-bio">
+                <h2>My Bio</h2>
+                <p>Hello! I'm Sasha M, a passionate web developer with a strong interest in creating accessible, responsive, and user-friendly web applications. I believe in the power of technology to solve real-world problems and improve people's lives.</p>
+                <p>With 2+ years of experience in front-end development, I've worked on various projects ranging from simple websites to complex web applications. I'm constantly learning and adapting to new technologies and methodologies in the ever-evolving field of web development.</p>
+            </section>
+            
+            <section class="about-section" data-testid="test-about-goals">
+                <h2>Goals in This Program</h2>
+                <p>My primary goals in this program are:</p>
+                <ul>
+                    <li>Master advanced JavaScript concepts and frameworks</li>
+                    <li>Improve my understanding of accessibility best practices</li>
+                    <li>Enhance my skills in responsive design and CSS methodologies</li>
+                    <li>Learn more about backend development to become a full-stack developer</li>
+                    <li>Build a portfolio of projects that demonstrate my capabilities</li>
+                    <li>Network with other developers and professionals in the field</li>
+                </ul>
+            </section>
+            
+            <section class="about-section" data-testid="test-about-confidence">
+                <h2>Areas of Low Confidence</h2>
+                <p>While I'm comfortable with many aspects of web development, there are areas where I'm still building confidence:</p>
+                <ul>
+                    <li>Advanced CSS animations and complex layouts</li>
+                    <li>Performance optimization for large-scale applications</li>
+                    <li>Advanced state management in complex applications</li>
+                    <li>Server-side rendering and SEO optimization</li>
+                    <li>Testing strategies and implementation</li>
+                </ul>
+                <p>I'm actively working on improving these areas through practice, research, and learning from experienced developers.</p>
+            </section>
+            
+            <section class="about-section" data-testid="test-about-future-note">
+                <h2>Note to Future Self</h2>
+                <p>Remember why you started this journey. Stay curious, keep learning, and don't be afraid to make mistakes. Every challenge is an opportunity to grow. Focus on creating meaningful work that makes a positive impact.</p>
+                <p>Don't compare your chapter 1 to someone else's chapter 20. Your journey is unique, and progress at your own pace is still progress. Keep building, keep experimenting, and never lose sight of your passion for creating.</p>
+            </section>
+            
+            <section class="about-section" data-testid="test-about-extra">
+                <h2>Extra Thoughts</h2>
+                <p>Web development is not just about writing code; it's about solving problems and creating experiences. The most successful projects are those that prioritize the user's needs while maintaining clean, maintainable code.</p>
+                <p>I believe in the importance of work-life balance and continuous learning. Taking time to recharge and explore new interests often leads to fresh perspectives and creative solutions to technical challenges.</p>
+                <p>Lastly, I'm grateful for the supportive developer community that shares knowledge and helps each other grow. I hope to contribute back to this community as I continue to develop my skills.</p>
+            </section>
+        </section>
+        <section class="page" id="contact-page">
+            <h1>Contact Us</h1>
+            
+            <div class="success-message" data-testid="test-contact-success">
+                Thank you for your message! We'll get back to you soon.
             </div>
             
-            <div class="info-section">
-                <header>
-                    <h2 data-testid="test-user-name">Sasha M</h2>
-                    <p data-testid="test-user-bio">Frontend developer with 2+ years of experience building accessible, responsive web applications. Passionate about UX design and creating inclusive digital experiences for all users.</p>
-                </header>
+            <form id="contact-form" novalidate>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        data-testid="test-contact-name"
+                        aria-describedby="name-error"
+                        required
+                    >
+                    <div class="error-message" id="name-error" data-testid="test-contact-error-name">
+                        Please enter your full name
+                    </div>
+                </div>
                 
-                <nav data-testid="test-user-social-links" aria-label="Social Media Links">
-                    <ul class="social-links">
-                        <li>
-                            <a 
-                                href="https://X.com/sasham" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                data-testid="test-user-social-twitter"
-                            >
-                                <span class="social-icon">🐦</span> X
-                            </a>
-                        </li>
-                        <li>
-                            <a 
-                                href="https://github.com/S-mic" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                data-testid="test-user-social-github"
-                            >
-                                <span class="social-icon">💻</span> GitHub
-                            </a>
-                        </li>
-                        <li>
-                            <a 
-                                href="https://www.linkedin.com/in/sasha-michell-dube-87b079305" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                data-testid="test-user-social-linkedin"
-                            >
-                                <span class="social-icon">💼</span> LinkedIn
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        data-testid="test-contact-email"
+                        aria-describedby="email-error"
+                        required
+                    >
+                    <div class="error-message" id="email-error" data-testid="test-contact-error-email">
+                        Please enter a valid email address
+                    </div>
+                </div>
                 
-                <section class="hobbies-section" data-testid="test-user-hobbies">
-                    <h3>Hobbies</h3>
-                    <ul>
-                        <li>Hiking and outdoor photography</li>
-                        <li>Watching Netflix</li>
-                        <li>Open source contribution</li>
-                        <li>Designing Websites</li>
-                    </ul>
-                </section>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input 
+                        type="text" 
+                        id="subject" 
+                        name="subject" 
+                        data-testid="test-contact-subject"
+                        aria-describedby="subject-error"
+                        required
+                    >
+                    <div class="error-message" id="subject-error" data-testid="test-contact-error-subject">
+                        Please enter a subject for your message
+                    </div>
+                </div>
                 
-                <section class="dislikes-section" data-testid="test-user-dislikes">
-                    <h3>Dislikes</h3>
-                    <ul>
-                        <li>Inaccessible web interfaces</li>
-                        <li>Slow loading websites</li>
-                        <li>Poor documentation</li>
-                        <li>Code that lacks clarity</li>
-                    </ul>
-                </section>
-            </div>
-        </div>
-    </article>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        data-testid="test-contact-message"
+                        aria-describedby="message-error"
+                        required
+                    ></textarea>
+                    <div class="error-message" id="message-error" data-testid="test-contact-error-message">
+                        Please enter a message with at least 10 characters
+                    </div>
+                </div>
+                
+                <button type="submit" data-testid="test-contact-submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Sasha M. All rights reserved.</p>
+    </footer>
 
     <script>
-        function updateTime() {
-    const timeElement = document.querySelector('[data-testid="test-user-time"]');
-    const now = new Date();
-    const timeString = now.getHours() + ":" + 
-                      now.getMinutes().toString().padStart(2, '0') + ":" + 
-                      now.getSeconds().toString().padStart(2, '0');
-    timeElement.textContent = timeString;
-}
-        
-        updateTime();
-        setInterval(updateTime, 100);
-        
         document.addEventListener('DOMContentLoaded', function() {
-            const avatarElement = document.querySelector('[data-testid="test-user-avatar"]');
+            const pageButtons = document.querySelectorAll('.page-btn, .nav-links a');
+            const pages = document.querySelectorAll('.page');
             
+            function showPage(pageId) {
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                document.getElementById(`${pageId}-page`).classList.add('active');
+                
+                pageButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-page') === pageId) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+            
+            pageButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+            const contactForm = document.getElementById('contact-form');
+            const successMessage = document.querySelector('[data-testid="test-contact-success"]');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                resetErrors();
+                
+                const isValid = validateForm();
+                
+                if (isValid) {
+                    successMessage.style.display = 'block';
+                    contactForm.reset();
+                    
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                }
+            });
+            
+            function validateForm() {
+                let isValid = true;
+                
+                const nameInput = document.querySelector('[data-testid="test-contact-name"]');
+                if (!nameInput.value.trim()) {
+                    showError(nameInput, 'test-contact-error-name');
+                    isValid = false;
+                }
+                const emailInput = document.querySelector('[data-testid="test-contact-email"]');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+                    showError(emailInput, 'test-contact-error-email');
+                    isValid = false;
+                }
+                
+                const subjectInput = document.querySelector('[data-testid="test-contact-subject"]');
+                if (!subjectInput.value.trim()) {
+                    showError(subjectInput, 'test-contact-error-subject');
+                    isValid = false;
+                }
+                const messageInput = document.querySelector('[data-testid="test-contact-message"]');
+                if (!messageInput.value.trim() || messageInput.value.trim().length < 10) {
+                    showError(messageInput, 'test-contact-error-message');
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            function showError(input, errorTestId) {
+                input.classList.add('input-error');
+                const errorElement = document.querySelector(`[data-testid="${errorTestId}"]`);
+                errorElement.style.display = 'block';
+                
+                if (!document.querySelector('.input-error:focus')) {
+                    input.focus();
+                }
+            }
+            
+            function resetErrors() {
+                const errorInputs = document.querySelectorAll('.input-error');
+                errorInputs.forEach(input => {
+                    input.classList.remove('input-error');
+                });
+                
+                const errorMessages = document.querySelectorAll('.error-message');
+                errorMessages.forEach(message => {
+                    message.style.display = 'none';
+                });
+                
+                successMessage.style.display = 'none';
+            }
+            
+            const formInputs = contactForm.querySelectorAll('input, textarea');
+            formInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.value.trim()) {
+                        validateField(this);
+                    }
+                });
+            });
+            
+            function validateField(field) {
+                const fieldTestId = field.getAttribute('data-testid');
+                let isValid = true;
+                
+                switch(fieldTestId) {
+                    case 'test-contact-name':
+                        if (!field.value.trim()) {
+                            showError(field, 'test-contact-error-name');
+                            isValid = false;
+                        }
+                        break;
+                    case 'test-contact-email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!field.value.trim() || !emailRegex.test(field.value)) {
+                            showError(field, 'test-contact-error-email');
+                            isValid = false;
+                        }
+                        break;
+                    case 'test-contact-subject':
+                        if (!field.value.trim()) {
+                            showError(field, 'test-contact-error-subject');
+                            isValid = false;
+                        }
+                        break;
+                    case 'test-contact-message':
+                        if (!field.value.trim() || field.value.trim().length < 10) {
+                            showError(field, 'test-contact-error-message');
+                            isValid = false;
+                        }
+                        break;
+                }
+                
+                if (isValid) {
+                    field.classList.remove('input-error');
+                    const errorTestId = `test-contact-error-${fieldTestId.split('-').pop()}`;
+                    const errorElement = document.querySelector(`[data-testid="${errorTestId}"]`);
+                    errorElement.style.display = 'none';
+                }
+            }
+            
+            function updateTime() {
+                const timeElement = document.querySelector('[data-testid="test-user-time"]');
+                const now = new Date();
+                const timeString = now.getHours() + ":" + 
+                                now.getMinutes().toString().padStart(2, '0') + ":" + 
+                                now.getSeconds().toString().padStart(2, '0');
+                timeElement.textContent = timeString;
+            }
+            
+            updateTime();
+            setInterval(updateTime, 1000);
+            
+            const avatarElement = document.querySelector('[data-testid="test-user-avatar"]');
             
             avatarElement.addEventListener('click', function() {
                 const newUrl = prompt('Enter a new image URL:');
